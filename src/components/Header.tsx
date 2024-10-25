@@ -50,7 +50,7 @@ function NavigationMenuHeader() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Academia</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            <ul className="w-[200px] p-4">
               {components.map((component) => (
                 <ListItem
                   key={component.title}

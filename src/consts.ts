@@ -1,1 +1,1 @@
-export const DEFAULT_CLASS_MAIN = "container mx-auto py-8";
+export const DEFAULT_CLASS_MAIN = "mx-auto mb-8";
