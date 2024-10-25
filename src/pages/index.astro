@@ -1,49 +1,37 @@
 ---
-import Carousel from "@/components/Home/Carousel";
+import { SpotlightHome } from "@/components/Home/SpotlightHome";
+import YoutubeEmbed from "@/components/YoutubeEmbed.astro";
 import { DEFAULT_CLASS_MAIN } from "@/consts";
 import ligarobotica from "@/images/ligarobotica.webp";
 import muniolmue from "@/images/muniolmue.webp";
 import Layout from "@/layouts/Layout.astro";
-import { YouTube } from "astro-embed";
 import { Image } from "astro:assets";
 ---
 
 <Layout title="Anr Chile">
   <main class={DEFAULT_CLASS_MAIN}>
-    <Carousel client:idle />
-    <p class="text-gray-300 mb-6">
-      La Academia Nacional de Robótica de Olmué (ANR) fue fundada en 2017 como
-      respuesta al creciente interés de los estudiantes por explorar la
-      tecnología y la robótica. Su origen se remonta a los talleres de robótica
-      de la Escuela “Atenas” de Olmué, donde los alumnos mostraron gran
-      entusiasmo y talento. Para dar continuidad a su aprendizaje, se creó un
-      espacio donde los estudiantes pudieran desarrollar sus habilidades
-      tecnológicas y acceder a oportunidades que, de otro modo, estarían fuera
-      de su alcance, especialmente aquellos en situaciones socioeconómicas. La
-      ANR ha demostrado su compromiso con la excelencia al destacar en
-      competencias nacionales e internacionales. Sus equipos han logrado
-      reconocimientos en diseño de robots, programación avanzada y resolución de
-      problemas técnicos. Además, han representado a Olmué y Chile en eventos de
-      prestigio global, demostrando que el talento local puede brillar en
-      escenarios internos. Más allá de las competencias, la ANR fomenta valores
-      como el trabajo en equipo, la ética y el aprendizaje continuo, preparando
-      a los estudiantes para afrontar los desafíos del futuro. Desde 2023, la
-      academia opera como una organización sin fines de lucro, enfocada en
-      promover la robótica y la innovación en la región.
-    </p>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <YouTube id="https://youtu.be/hE_p_Xkvxaw" />
+    <SpotlightHome client:load />
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 lg:px-48 mx-auto max-w-7xl items-center"
+    >
+      <div class="flex justify-center items-center">
+        <YoutubeEmbed
+          videoId="hE_p_Xkvxaw"
+          title="Torneo robótica de la liga robótica"
+        />
       </div>
-      <div>
+      <div class="flex justify-center items-center">
         <a href="https://www.ligarobotica.cl/" target="_blank">
           <Image src={ligarobotica} alt="Logo Liga Robótica" />
         </a>
       </div>
-      <div>
+      <div class="flex justify-center items-center">
         <a href="https://www.muniolmue.cl/" target="_blank">
-          <Image src={muniolmue} alt="Logo Municipalidad de Olmué" />
+          <Image
+            src={muniolmue}
+            alt="Logo Municipalidad de Olmué"
+            class="max-w-[40vw] md:max-w-full"
+          />
         </a>
       </div>
     </div>
