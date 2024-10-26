@@ -1,4 +1,4 @@
-import { Spotlight } from "../ui/spotlight";
+import { Spotlight } from "@/components/ui/spotlight";
 
 export function SpotlightHome() {
   return (
@@ -14,7 +14,7 @@ export function SpotlightHome() {
         <p className="mt-4 font-normal text-base text-neutral-300 max-w-lg text-center mx-auto">
           La <strong>Academia Nacional de Robótica de Olmué (ANR)</strong>,
           fundada en 2017, nace del entusiasmo por la tecnología en la Escuela
-          "Atenas". Ofrece oportunidades únicas para desarrollar habilidades
+          Atenas. Ofrece oportunidades únicas para desarrollar habilidades
           tecnológicas, destacando en{" "}
           <strong>competencias nacionales e internacionales</strong>. La ANR no
           solo fomenta la excelencia en robótica, sino también valores como el{" "}
