@@ -1,7 +1,3 @@
-"use client";
-
-import * as React from "react";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,24 +5,25 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
-import { Link } from "next-view-transitions";
+  navigationMenuTriggerStyle
+} from "@web/components/ui/navigation-menu";
+import { cn } from "@web/lib/utils";
+import * as React from "react";
+import { Link } from "react-router";
 
 const components: { title: string; href: string }[] = [
   {
     title: "Misión",
-    href: "/mision",
+    href: "/mision"
   },
   {
     title: "Visión",
-    href: "/vision",
+    href: "/vision"
   },
   {
     title: "Valores",
-    href: "/valores",
-  },
+    href: "/valores"
+  }
 ];
 
 export function Header() {
@@ -43,7 +40,9 @@ function NavigationMenuHeader() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/">Inicio</Link>
+            <Link to="/" viewTransition>
+              Inicio
+            </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -51,11 +50,7 @@ function NavigationMenuHeader() {
           <NavigationMenuContent>
             <ul className="w-[200px] p-4">
               {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                ></ListItem>
+                <ListItem key={component.title} title={component.title} href={component.href} />
               ))}
             </ul>
           </NavigationMenuContent>
@@ -86,29 +81,27 @@ function NavigationMenuHeader() {
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, href, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          href={href || "#"}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  );
-});
+const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(
+  ({ className, title, children, href, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <Link
+            ref={ref}
+            className={cn(
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              className
+            )}
+            to={href || "#"}
+            {...props}
+            viewTransition
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+          </Link>
+        </NavigationMenuLink>
+      </li>
+    );
+  }
+);
 ListItem.displayName = "ListItem";
