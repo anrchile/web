@@ -86,7 +86,6 @@ export const YouTubePreview: React.FC<YouTubePreviewProps> = ({
                 style={{
                   viewTransitionName: `youtube-preview-${videoId}`
                 }}
-                // position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent; view-transition-name: youtube-preview-hE_p_Xkvxaw;
                 className="transition-transform group-hover:scale-105 rounded-lg object-cover absolute inset-0 size-full"
               />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-all">
