@@ -1,6 +1,6 @@
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@web/components/ui/dialog";
-import { Play } from "lucide-react";
+import { Loader, Play } from "lucide-react";
 import { useState } from "react";
 import { flushSync } from "react-dom";
 
@@ -42,7 +42,7 @@ export const YouTubePreview: React.FC<YouTubePreviewProps> = ({
             });
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent z-10">
+          <div className="absolute inset-0 bg-linear-to-b from-black/70 to-transparent z-10">
             <h2 className="text-white text-xl font-bold p-4 line-clamp-2">{title}</h2>
           </div>
           <div className="relative w-full aspect-video">
@@ -55,13 +55,20 @@ export const YouTubePreview: React.FC<YouTubePreviewProps> = ({
                 <img
                   src={thumbnailUrl}
                   alt={title}
-                  className="transition-transform group-hover:scale-105 object-cover"
+                  className="transition-transform group-hover:scale-105 object-cover absolute inset-0 size-full"
                 />
               </div>
             )}
 
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-all">
-              {isOpen && <Play className="w-16 h-16 text-white opacity-80 group-hover:opacity-100 transition-opacity" />}
+              {!isOpen && (
+                <Play
+                  className="w-16 h-16 text-white opacity-80 group-hover:opacity-100 transition-opacity"
+                  style={{
+                    viewTransitionName: `youtube-preview-${videoId}-button`
+                  }}
+                />
+              )}
             </div>
           </div>
         </a>
@@ -72,14 +79,26 @@ export const YouTubePreview: React.FC<YouTubePreviewProps> = ({
         </VisuallyHidden>
         <div className="aspect-video relative">
           {isOpen && (
-            <img
-              src={thumbnailUrl}
-              alt={title}
-              style={{
-                viewTransitionName: `youtube-preview-${videoId}`
-              }}
-              className="transition-transform group-hover:scale-105 rounded-lg object-cover"
-            />
+            <>
+              <img
+                src={thumbnailUrl}
+                alt={title}
+                style={{
+                  viewTransitionName: `youtube-preview-${videoId}`
+                }}
+                // position: absolute; height: 100%; width: 100%; inset: 0px; object-fit: cover; color: transparent; view-transition-name: youtube-preview-hE_p_Xkvxaw;
+                className="transition-transform group-hover:scale-105 rounded-lg object-cover absolute inset-0 size-full"
+              />
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-all">
+                <Loader
+                  className="w-16 h-16 text-white opacity-80 group-hover:opacity-100 transition-opacity"
+                  style={{
+                    viewTransitionName: `youtube-preview-${videoId}-button`,
+                    animation: "spin 1s linear infinite"
+                  }}
+                />
+              </div>
+            </>
           )}
           <iframe
             className="rounded-lg relative z-10"
